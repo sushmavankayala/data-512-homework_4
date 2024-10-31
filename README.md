@@ -66,6 +66,12 @@ Each notebook generates some intermediary files that are used by the later noteb
 4. [yearly_weighted_aqi_1964-2024.csv](generated_files/intermediate/yearly_weighted_aqi_1964-2024.csv): Contains the yearly AQI estimates at Stockton, CA that was calculated by aggregating daily summaries received from multiple monitoring stations. This is created by [4_smoke_estimates.ipynb](4_smoke_estimates.ipynb)
 5. [smoke_estimates_1964-2024.csv](generated_files/intermediate/smoke_estimates_1964-2024.csv): Contains the yearly smoke estimates at Stockton, CA that were calculated using the wildland fire information like area burnt, distance from city, etc.
 
+## Generated Plots
+
+The notebook [5_data_visualization.ipynb](5_data_visualization.ipynb) generates 3 plots and saves them in the `generated_plots` folder.
+
+Description of the generated visualisations are written in [Part1_Reflection.pdf](Part1_Reflection.pdf)
+
 ## Considerations and Limitations
 
 1. Missing data
