@@ -6,7 +6,7 @@ More and more frequently summers in the western US have been characterized by wi
 
 ## Project Goal
 
-This project aims to investigate the effects of wildfires on Stockton, CA. We will specifically analyze different features of wildfires like total acreas burnt, disatnce from city, etc. We combine with information with Air Quality Index (AQI) estimates and analyse the impact over the last 60 years. Additionally, we seek to enhance reproducibility and develop professional skills necessary for conducting data-driven analyses, as part of the Autumn 2024 DATA 512 course at the University of Washington.
+This project aims to investigate the effects of wildfires on Stockton, CA. We will specifically analyze different features of wildfires like total acreas burnt, disatnce from city, etc. We combine this information with Air Quality Index (AQI) estimates and analyse the impact over the last 60 years. Additionally, we seek to enhance reproducibility and develop professional skills necessary for conducting data-driven analyses, as part of the Autumn 2024 DATA 512 course at the University of Washington.
 
 ## License
 
@@ -65,3 +65,14 @@ Each notebook generates some intermediary files that are used by the later noteb
 3. [particulate_AQI_1964-2024.csv](generated_files/intermediate/particulate_AQI_1964-2024.csv): Contains the response from EPA AQI API call for fetching daily summaries of particulate pollutants. This is created by [3_data_cleaning.ipynb](3_data_cleaning.ipynb)
 4. [yearly_weighted_aqi_1964-2024.csv](generated_files/intermediate/yearly_weighted_aqi_1964-2024.csv): Contains the yearly AQI estimates at Stockton, CA that was calculated by aggregating daily summaries received from multiple monitoring stations. This is created by [4_smoke_estimates.ipynb](4_smoke_estimates.ipynb)
 5. [smoke_estimates_1964-2024.csv](generated_files/intermediate/smoke_estimates_1964-2024.csv): Contains the yearly smoke estimates at Stockton, CA that were calculated using the wildland fire information like area burnt, distance from city, etc.
+
+## Considerations and Limitations
+
+1. Missing data
+    - While fetching the AQI data, we noticed that the particulate data was missing for a few years, but gaseous data was present. This might skew our AQI estimates that were calculated by aggregating the AQI values per pollutant.
+    - In the daily summary fetched from AQI API, we notice that about 20% of the records had missing AQI. We proceeded with the analysis by dropping these values, but we might want to look at options to infer the AQI values by some other means
+    - Though we wanted to analyse wildfire data till 2024, I could only find wildland fires till 2020. We might want to look for other sources to get information about wildfires for these years
+2. Error handling
+    - The shortest distance calculation failed for a few wildfires. Since the number was very small in comparision to the actual dataset, these wildfires were dropped. We might want to look at ways in which the calculation can be performed for these wildland fires.
+3. Smoke estimate calculation
+    - The formula used for calculating smoke estimates was created based on generic understanding of what might cause smoke. There are a lot of other nuanced factors that can be considered like wind direction, shape of the wildland fire, duration of the fire, etc. I decided to go ahead with my estimate since I saw a decent correlation between smoke estimate and AQI. That being said, someone with more domain knowledge might be able to come up with better formula for smoke estimate.
