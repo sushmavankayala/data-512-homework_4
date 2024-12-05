@@ -6,10 +6,10 @@ More and more frequently summers in the western US have been characterized by wi
 
 ## Project Goal
 
-### Part 1
+### Part 1 - Common Analysis
 Part 1 of this project aims to investigate the effects of wildfires on Stockton, CA. We will specifically analyze different features of wildfires like total acreas burnt, disatnce from city, etc. We combine this information with Air Quality Index (AQI) estimates and analyse the impact over the last 60 years. We aim to come up with a metric to meaingfully represent smoke estimates in the city, and forcast the smoke estimates till the year 2050.
 
-### Part 2
+### Part 2 - Extension
 
 **Project Goal:**
 
@@ -26,11 +26,11 @@ Snippets of the code used in this project were taken from examples was developed
 
 A copy of the examples referred is also available in this repository under the folder named `reference_code`.
 
-### Source Data
+## Source Data
 
-#### Part 1 - Common Analysis
+### Part 1 - Common Analysis
 
-##### WildLand Fire Data
+#### WildLand Fire Data
 
 The wildfire data for this project was sourced from the [Combined Wildland Fire Datasets for the United States and Certain Territories, 1800s-Present](https://www.sciencebase.gov/catalog/item/61aa537dd34eb622f699df81). his dataset includes a "combined" dataset that is free of duplicates, containing information of different types of wildland fires. For our analysis, we use the JSON file named `USGS_Wildland_Fire_Combined_Dataset.json`. This file is not committed to the repository since its size exceeds the allowed limits of git.
 
@@ -42,7 +42,7 @@ Key variables in this dataset:
 - **Burned Area:** The area affected by the fire (usually in acres).
 - **Location:** Geographic coordinates (latitude and longitude) of the wildfire.
 
-##### Air Quality Index Data
+#### Air Quality Index Data
 
 The air quality index (AQI) data for this project was retrieved from the US Environmental Protection Agency (EPA) Air Quality Service (AQS) API. The [documentation](https://aqs.epa.gov/aqsweb/documents/data_api.html) provides detailed information about the available parameters and sample requests.
 
@@ -56,9 +56,9 @@ Key variables in the AQI dataset:
 - **Latitude/Longitude:** The geographic coordinates of the monitoring station.
 - **State/County/City FIPS Codes:** Codes representing the state, county, and city where the data was collected.
 
-#### Part 1 - Extension
+### Part 2 - Extension
 
-#####  Multiple Causes of Death - CDC
+####  Multiple Causes of Death - CDC
 
 The Multiple Cause of Death database provides mortality and population statistics for all U.S. counties based on death certificates of U.S. residents. Each certificate includes a primary cause of death, up to twenty additional contributing causes, and demographic information. This dataset helps to analyze various causes of death, providing insights into public health trends across different regions and years. The data is accessible through the [CDC Multiple Cause of Death database](https://www.cdc.gov/nchs/data_access/cmsd.htm).
 
@@ -67,7 +67,7 @@ Key variables in this dataset that were used for my analysis:
 - **County:** The county in which the death occurred.
 - **Cause of Death:** The primary cause and contributing causes, including ICD-10 codes.
 
-##### Healthcare Cost and Utilization Project - AHRQ
+#### Healthcare Cost and Utilization Project - AHRQ
 
 The Agency for Healthcare Research and Quality (AHRQ) manages the Healthcare Cost and Utilization Project (HCUP), which provides comprehensive hospital data across the U.S. This includes insights into hospitalizations, healthcare utilization, and associated costs. The data can be used to analyze trends in healthcare access, the cost of care, and hospital performance. HCUP data is available at [HCUPnet](https://hcupnet.ahrq.gov/).
 
@@ -80,7 +80,7 @@ Key variables in this dataset:
 - **Length of Stay:** The duration of the hospitalization in days.
 - **Total Charges:** The total charges incurred for the hospitalization.
 
-##### California Health and Human Services (CalHHS)
+#### California Health and Human Services (CalHHS)
 
 The California Health and Human Services Agency (CalHHS) offers an Open Data Portal providing access to non-confidential health and human services data. This portal includes standardized datasets on a range of topics, including hospital discharges. The portal is designed to enhance public access to critical healthcare information in California. For this analysis, we will use the aggregated hospital discharge data from CalHHS, which directly includes information found in the AHRQ dataset. The CalHHS Open Data Portal can be accessed [here](https://data.chhs.ca.gov/).
 
@@ -136,8 +136,8 @@ Each notebook generates some intermediary files that are used by the later noteb
 2. [gaseous_AQI_1964-2024.csv](generated_files/intermediate/gaseous_AQI_1964-2024.csv): Contains the response from EPA AQI API call for fetching daily summaries of gaseous pollutants. This is created by [2_data_aquisition_aqi.ipynb](2_data_aquisition_aqi.ipynb)
 3. [particulate_AQI_1964-2024.csv](generated_files/intermediate/particulate_AQI_1964-2024.csv): Contains the response from EPA AQI API call for fetching daily summaries of particulate pollutants. This is created by [3_data_cleaning.ipynb](3_data_cleaning.ipynb)
 4. [yearly_weighted_aqi_1964-2024.csv](generated_files/intermediate/yearly_weighted_aqi_1964-2024.csv): Contains the yearly AQI estimates at Stockton, CA that was calculated by aggregating daily summaries received from multiple monitoring stations. This is created by [4_smoke_estimates.ipynb](4_smoke_estimates.ipynb)
-5. [smoke_estimates_1964-2024.csv](generated_files/intermediate/smoke_estimates_1964-2024.csv): Contains the yearly smoke estimates at Stockton, CA that were calculated using the wildland fire information like area burnt, distance from city, etc.
-6. [discharge_and_death_data_1999_2020.csv](generated_files/intermediate/discharge_and_death_data_1999_2020.csv): Contains the yearly health related metrics, i.e, deaths per each of the 5 PM2.5 related diseases, and hospital discharges related to respiratory diseases.
+5. [smoke_estimates_1964-2024.csv](generated_files/intermediate/smoke_estimates_1964-2024.csv): Contains the yearly smoke estimates at Stockton, CA that were calculated using the wildland fire information like area burnt, distance from city, etc. This is created by [4_smoke_estimates.ipynb](4_smoke_estimates.ipynb)
+6. [discharge_and_death_data_1999_2020.csv](generated_files/intermediate/discharge_and_death_data_1999_2020.csv): Contains the yearly health related metrics, i.e, deaths per each of the 5 PM2.5 related diseases, and hospital discharges related to respiratory diseases. This is created by [6_health_data.ipynb](6_health_data.ipynb)
 
 ## Generated Plots
 
@@ -183,4 +183,4 @@ As part of my analysis to understand how the number of deaths and hospital disch
 9. **Data Aggregation Bias**  
    - Aggregating data by year may obscure short-term trends or outliers, such as days with extreme smoke levels or seasonal variations in respiratory diseases. Granular analysis, such as monthly or seasonal data, could provide additional insights.  
 10. **Data Source Reliability**  
-   - The health and AQI data come from reputable sources (CDC, CalHHS, EPA), but any inaccuracies or biases in their collection and reporting processes will impact the analysis.  
+    - The health and AQI data come from reputable sources (CDC, CalHHS, EPA), but any inaccuracies or biases in their collection and reporting processes will impact the analysis.  
