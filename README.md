@@ -35,61 +35,61 @@ A copy of the examples referred is also available in this repository under the f
 The wildfire data for this project was sourced from the [Combined Wildland Fire Datasets for the United States and Certain Territories, 1800s-Present](https://www.sciencebase.gov/catalog/item/61aa537dd34eb622f699df81). This dataset includes a "combined" dataset free of duplicates and containing information about various wildland fires. For our analysis, we used the JSON file named `USGS_Wildland_Fire_Combined_Dataset.json`. Due to its size exceeding the limits of Git, the file is not committed to the repository.
 
 **Key variables in this dataset**:  
-- **Fire Name** *(String)*: Identifier or name of the wildfire.  
-- **Fire Start Date** *(Date)*: The starting date of the fire.  
-- **Fire End Date** *(Date)*: The date when the fire was extinguished or contained.  
-- **Fire Type** *(String)*: The category of fire, such as vegetation or forest fire.  
-- **Burned Area** *(Float)*: The total area affected by the fire, typically measured in acres.  
-- **Location** *(Float, Float)*: Latitude and longitude coordinates indicating the geographic location of the wildfire.  
+- `Fire Name` *(String)*: Identifier or name of the wildfire.  
+- `Fire Start Date` *(Date)*: The starting date of the fire.  
+- `Fire End Date` *(Date)*: The date when the fire was extinguished or contained.  
+- `Fire Type` *(String)*: The category of fire, such as vegetation or forest fire.  
+- `Burned Area` *(Float)*: The total area affected by the fire, typically measured in acres.  
+- `Location` *(Float, Float)*: Latitude and longitude coordinates indicating the geographic location of the wildfire.  
 
 #### Air Quality Index Data  
 
 The air quality index (AQI) data for this project was retrieved from the [EPA Air Quality Service (AQS) API](https://aqs.epa.gov/aqsweb/documents/data_api.html). This dataset contains daily AQI measurements from monitoring stations. To fetch AQI data near Stockton, CA, we used the Federal Information Processing Standards (FIPS) codes for city, county, and state, obtained from the [Census Bureau](https://www.census.gov/library/reference/code-lists/ansi.html).
 
 **Key variables in this dataset**:  
-- **Date** *(Date)*: The date of air quality measurement.  
-- **Station ID** *(String)*: A unique identifier for each monitoring station.  
-- **AQI Value** *(Integer)*: The calculated AQI score for the given date and location.  
-- **Pollutant** *(String)*: The specific pollutant measured, such as PM2.5 or Ozone.  
-- **Latitude/Longitude** *(Float, Float)*: Coordinates of the monitoring station.  
-- **State/County/City FIPS Codes** *(String)*: Numeric codes representing the geographic location of the measurements.  
+- `Date` *(Date)*: The date of air quality measurement.  
+- `Station ID` *(String)*: A unique identifier for each monitoring station.  
+- `AQI Value` *(Integer)*: The calculated AQI score for the given date and location.  
+- `Pollutant` *(String)*: The specific pollutant measured, such as PM2.5 or Ozone.  
+- `Latitude/Longitude` *(Float, Float)*: Coordinates of the monitoring station.  
+- `State/County/City FIPS Codes` *(String)*: Numeric codes representing the geographic location of the measurements.  
 
 ### Part 2 - Extension
 
 #### Multiple Causes of Death - CDC  
 
-The [Multiple Cause of Death database](https://www.cdc.gov/nchs/data_access/cmsd.htm) provides mortality and population statistics for all U.S. counties based on death certificates. Each certificate includes the primary cause of death, up to twenty contributing causes, and demographic details.
+The [Multiple Cause of Death database](https://wonder.cdc.gov/mcd.html) provides mortality and population statistics for all U.S. counties based on death certificates. Each certificate includes the primary cause of death, up to twenty contributing causes, and demographic details.
 
 **Key variables in this dataset**:  
-- **Year** *(Integer)*: The year of death.  
-- **County** *(String)*: The county where the death occurred.  
-- **Cause of Death** *(String)*: The primary and contributing causes of death, categorized by ICD-10 codes.  
+- `Year` *(Integer)*: The year of death.  
+- `County` *(String)*: The county where the death occurred.  
+- `Cause of Death` *(String)*: The primary and contributing causes of death, categorized by ICD-10 codes.  
 
 #### Healthcare Cost and Utilization Project - AHRQ  
 
 The [Healthcare Cost and Utilization Project (HCUP)](https://hcupnet.ahrq.gov/) is a resource by the Agency for Healthcare Research and Quality (AHRQ) that provides insights into U.S. hospitalizations, healthcare utilization, and costs. This dataset helps analyze trends in care access, outcomes, and costs.
 
 **Key variables in this dataset**:  
-- **Hospitalization Year** *(Integer)*: The year of admission.  
-- **Hospital ID** *(String)*: Unique identifier for hospitals.  
-- **Diagnosis Codes** *(String)*: ICD-10 codes representing primary and secondary diagnoses.  
-- **Procedure Codes** *(String)*: ICD-10 codes for procedures performed.  
-- **Discharge Status** *(String)*: Patient discharge outcome (e.g., routine, transferred, deceased).  
-- **Length of Stay** *(Integer)*: Duration of hospitalization in days.  
-- **Total Charges** *(Float)*: Total cost of hospitalization.  
+- `Hospitalization Year` *(Integer)*: The year of admission.  
+- `Hospital ID` *(String)*: Unique identifier for hospitals.  
+- `Diagnosis Codes` *(String)*: ICD-10 codes representing primary and secondary diagnoses.  
+- `Procedure Codes` *(String)*: ICD-10 codes for procedures performed.  
+- `Discharge Status` *(String)*: Patient discharge outcome (e.g., routine, transferred, deceased).  
+- `Length of Stay` *(Integer)*: Duration of hospitalization in days.  
+- `Total Charges` *(Float)*: Total cost of hospitalization.  
 
 #### California Health and Human Services (CalHHS)  
 
 The [California Health and Human Services Open Data Portal](https://data.chhs.ca.gov/) offers access to aggregated, non-confidential health data. For this analysis, hospital discharge data, which includes aggregated insights from the HCUP dataset, was utilized.
 
 **Key variables in this dataset**:  
-- **Year** *(Integer)*: The year of discharge.  
-- **County** *(String)*: The county where the hospital discharge occurred.  
-- **Diagnosis Codes (ICD-10)** *(String)*: Codes for primary and secondary diagnoses.  
-- **Procedure Codes (ICD-10)** *(String)*: Codes for medical procedures performed.  
-- **Discharge Status** *(String)*: Patient outcome post-discharge.  
-- **Hospital Type** *(String)*: Classification of the facility (e.g., general, specialty).  
-- **Race and Ethnicity** *(String)*: Demographics of the patients.  
+- `Year` *(Integer)*: The year of discharge.  
+- `County` *(String)*: The county where the hospital discharge occurred.  
+- `Diagnosis Codes (ICD-10)` *(String)*: Codes for primary and secondary diagnoses.  
+- `Procedure Codes (ICD-10)` *(String)*: Codes for medical procedures performed.  
+- `Discharge Status` *(String)*: Patient outcome post-discharge.  
+- `Hospital Type` *(String)*: Classification of the facility (e.g., general, specialty).  
+- `Race and Ethnicity` *(String)*: Demographics of the patients.  
   
 *Note: Per my initial extension plan, and I intended to use data from CDC and AHRQ for my analysis. I recently found the third source CalHHS, which directly provides aggregated data that includes the information from the AHRQ dataset. Hence, I will use the CalHHS data in place of AHRQ data for this analysis. I included the details about AHRQ nonethless, since it might be useful for someone who would want to extend my analysis to include length of stay*
 
@@ -132,10 +132,63 @@ Each notebook generates some intermediary files that are used by the later noteb
 
 1. [wildfires_with_distances.csv](generated_files/intermediate/wildfires_with_distances.csv): Contains a list of wildland fires, with an added column representing the shortest distance of the wildfire from Stockton, CA. This is created by [1_data_aquisition_wildfire.ipynb](1_data_aquisition_wildfire.ipynb)
 2. [gaseous_AQI_1964-2024.csv](generated_files/intermediate/gaseous_AQI_1964-2024.csv): Contains the response from EPA AQI API call for fetching daily summaries of gaseous pollutants. This is created by [2_data_aquisition_aqi.ipynb](2_data_aquisition_aqi.ipynb)
+    Fields:
+    - `state_code`: String – Code for the state.
+    - `county_code`: String – Code for the county.
+    - `site_number`: Integer – Unique site identifier.
+    - `parameter_code`: String – Code for the measured pollutant.
+    - `poc`: Integer – Parameter occurrence code.
+    - `latitude`: Float – Latitude of the monitoring station.
+    - `longitude`: Float – Longitude of the monitoring station.
+    - `datum`: String – Geodetic datum.
+    - `parameter`: String – Name of the pollutant measured.
+    - `sample_duration_code`: String – Code for sample duration.
+    - `sample_duration`: String – Duration of the sample.
+    - `pollutant_standard`: String – Standard used to measure the pollutant.
+    - `date_local`: Date – Date of the measurement.
+    - `units_of_measure`: String – Units used to measure AQI.
+    - `event_type`: String – Type of event (e.g., "normal", "alert").
+    - `observation_count`: Integer – Number of observations.
+    - `observation_percent`: Float – Percentage of valid observations.
+    - `validity_indicator`: String – Indicator of data validity.
+    - `arithmetic_mean`: Float – Mean of the AQI values.
+    - `first_max_value`: Float – First maximum AQI value.
+    - `first_max_hour`: Integer – Hour of the first maximum AQI value.
+    - `aqi`: Integer – The AQI value.
+    - `method_code`: String – Code for the measurement method.
+    - `method`: String – Description of the measurement method.
+    - `local_site_name`: String – Local name of the monitoring site.
+    - `site_address`: String – Address of the monitoring site.
+    - `state`: String – Name of the state.
+    - `county`: String – Name of the county.
+    - `city`: String – Name of the city.
+    - `cbsa_code`: String – Code for the Core-Based Statistical Area.
+    - `cbsa`: String – Name of the CBSA.
+    - `date_of_last_change`: Date – Last date the data was updated.
 3. [particulate_AQI_1964-2024.csv](generated_files/intermediate/particulate_AQI_1964-2024.csv): Contains the response from EPA AQI API call for fetching daily summaries of particulate pollutants. This is created by [3_data_cleaning.ipynb](3_data_cleaning.ipynb)
+    Fields: (Same as gaseous_AQI_1964-2024.csv, as the structure is identical)
 4. [yearly_weighted_aqi_1964-2024.csv](generated_files/intermediate/yearly_weighted_aqi_1964-2024.csv): Contains the yearly AQI estimates at Stockton, CA that was calculated by aggregating daily summaries received from multiple monitoring stations. This is created by [4_smoke_estimates.ipynb](4_smoke_estimates.ipynb)
+    Fields:
+    - `year`: Integer – Year of the data.
+    - `weighted_avg_aqi`: Float – Weighted average AQI for the year.
 5. [smoke_estimates_1964-2024.csv](generated_files/intermediate/smoke_estimates_1964-2024.csv): Contains the yearly smoke estimates at Stockton, CA that were calculated using the wildland fire information like area burnt, distance from city, etc. This is created by [4_smoke_estimates.ipynb](4_smoke_estimates.ipynb)
+    Fields:
+    - `Fire_Year`: Integer – Year of the wildfire event.
+    - `smoke_estimate`: Float – Estimated smoke impact (based on area burned, distance, etc.)
 6. [discharge_and_death_data_1999_2020.csv](generated_files/intermediate/discharge_and_death_data_1999_2020.csv): Contains the yearly health related metrics, i.e, deaths per each of the 5 PM2.5 related diseases, and hospital discharges related to respiratory diseases. This is created by [6_health_data.ipynb](6_health_data.ipynb)
+
+    Fields:
+    - `Year`: Integer – Year of the data.
+    - `Asthma`: Integer – Number of asthma-related deaths.
+    - `Lung cancer`: Integer – Number of lung cancer-related deaths.
+    - `Pneumonia`: Integer – Number of pneumonia-related deaths.
+    - `Colon cancer`: Integer – Number of colon cancer-related deaths.
+    - `COPD`: Integer – Number of COPD-related deaths.
+    - `Respiratory Diseases`: Integer – Total deaths related to respiratory diseases.
+    - `Cancer`: Integer – Total cancer-related deaths.
+    - `Total Deaths`: Integer – Total deaths from all causes.
+    - `Year_right`: Integer – Year corresponding to the hospital discharge data.
+    - `Discharges`: Integer – Number of hospital discharges related to respiratory diseases.
 
 ## Generated Plots
 
@@ -155,7 +208,7 @@ As part of my analysis to understand how the number of deaths and hospital disch
 - **[smokeestimate_death_discharge.png](generated_plots/smokeestimate_death_discharge.png)**: This plot shows the relationship between smoke estimates and respiratory-related deaths and discharges over the years.
 - **[forecasted_deaths_Respiratory Diseases.png](<generated_plots/forecasted_deaths_Respiratory Diseases.png>)**: This plot presents the forecasted number of deaths due to respiratory diseases from 2020 to 2050 based on predicted smoke estimates.
 - **[forecasted_deaths_Asthma.png](generated_plots/forecasted_deaths_Asthma.png)**: This plot illustrates the forecasted number of deaths due to asthma from 2020 to 2050, based on the predicted smoke estimates.
-
+- **Smoke Estimate_<disease>**: These plots illustrate the trends between smoke estimates and specific diseases over the years. 
 
 ### Considerations and Limitations
 
