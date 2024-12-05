@@ -21,7 +21,14 @@ Additionally, we seek to enhance reproducibility and develop professional skills
 
 ## License
 
-### Code for Data Aquisition
+### Data Related License:
+
+1. Wildland Fires data is provided by the USGS. The data is available under the [USGS Data Policy](https://www2.usgs.gov/datamanagement/dmpolicy.php).
+2. AQI data is accessed through the EPA API. This lies in the public domain and is not subject to domestic copyright protection.
+3. Mortality data for PM2.5 related diseases is available from the CDC. This data is available under the [CDC Data Policy](https://www.cdc.gov/other/privacy.html).
+4. Hospital discharge data is from the CalHHS. This data is available under the [CalHHS Open Data Portal Terms of Use](https://data.chhs.ca.gov/pages/terms)
+
+### Related License
 Snippets of the code used in this project were taken from examples was developed by Dr. David W. McDonald for use in DATA 512, a course in the UW MS Data Science degree program. This code is provided under the [Creative Commons](https://creativecommons.org) [CC-BY license](https://creativecommons.org/licenses/by/4.0/). Revision 1.1 - August 16, 2024
 
 A copy of the examples referred is also available in this repository under the folder named `reference_code`.
