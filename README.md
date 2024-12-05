@@ -23,12 +23,12 @@ Additionally, we seek to enhance reproducibility and develop professional skills
 
 ### Data Related License:
 
-1. Wildland Fires data is provided by the USGS. The data is available under the [USGS Data Policy](https://www2.usgs.gov/datamanagement/dmpolicy.php).
+1. Wildland Fires data is provided by the USGS. The data is available under the [USGS Data Policy](https://www.usgs.gov/information-policies-and-instructions/acknowledging-or-crediting-usgs).
 2. AQI data is accessed through the EPA API. This lies in the public domain and is not subject to domestic copyright protection.
 3. Mortality data for PM2.5 related diseases is available from the CDC. This data is available under the [CDC Data Policy](https://www.cdc.gov/other/privacy.html).
 4. Hospital discharge data is from the CalHHS. This data is available under the [CalHHS Open Data Portal Terms of Use](https://data.chhs.ca.gov/pages/terms)
 
-### Related License
+### Code Related License
 Snippets of the code used in this project were taken from examples was developed by Dr. David W. McDonald for use in DATA 512, a course in the UW MS Data Science degree program. This code is provided under the [Creative Commons](https://creativecommons.org) [CC-BY license](https://creativecommons.org/licenses/by/4.0/). Revision 1.1 - August 16, 2024
 
 A copy of the examples referred is also available in this repository under the folder named `reference_code`.
@@ -41,13 +41,13 @@ A copy of the examples referred is also available in this repository under the f
 
 The wildfire data for this project was sourced from the [Combined Wildland Fire Datasets for the United States and Certain Territories, 1800s-Present](https://www.sciencebase.gov/catalog/item/61aa537dd34eb622f699df81). This dataset includes a "combined" dataset free of duplicates and containing information about various wildland fires. For our analysis, we used the JSON file named `USGS_Wildland_Fire_Combined_Dataset.json`. Due to its size exceeding the limits of Git, the file is not committed to the repository.
 
-**Key variables in this dataset**:  
-- `Fire Name` *(String)*: Identifier or name of the wildfire.  
-- `Fire Start Date` *(Date)*: The starting date of the fire.  
-- `Fire End Date` *(Date)*: The date when the fire was extinguished or contained.  
-- `Fire Type` *(String)*: The category of fire, such as vegetation or forest fire.  
-- `Burned Area` *(Float)*: The total area affected by the fire, typically measured in acres.  
-- `Location` *(Float, Float)*: Latitude and longitude coordinates indicating the geographic location of the wildfire.  
+**Key variables in this file**:  
+- `displayFieldName`: A blank string that typically represents the name of the dataset.
+- `fieldAliases`: A dictionary containing human-readable names for each of the 30 fields in the dataset.
+- `geometryType`: Defines the type of shape used for the spatial data.
+- `spatialReference`: Specifies the coordinate system applied to the geospatial data.
+- `fields`: A list of dictionaries detailing the name, type, and alias of each of the 30 attributes in the dataset.
+- `features`: A collection of observations stored in JSON format, with each observation represented as a dictionary containing keys for the attributes (fields) and geometry.
 
 #### Air Quality Index Data  
 
@@ -68,37 +68,31 @@ The air quality index (AQI) data for this project was retrieved from the [EPA Ai
 The [Multiple Cause of Death database](https://wonder.cdc.gov/mcd.html) provides mortality and population statistics for all U.S. counties based on death certificates. Each certificate includes the primary cause of death, up to twenty contributing causes, and demographic details.
 
 **Key variables in this dataset**:  
-- `Year` *(Integer)*: The year of death.  
-- `County` *(String)*: The county where the death occurred.  
-- `Cause of Death` *(String)*: The primary and contributing causes of death, categorized by ICD-10 codes.  
-
-#### Healthcare Cost and Utilization Project - AHRQ  
-
-The [Healthcare Cost and Utilization Project (HCUP)](https://hcupnet.ahrq.gov/) is a resource by the Agency for Healthcare Research and Quality (AHRQ) that provides insights into U.S. hospitalizations, healthcare utilization, and costs. This dataset helps analyze trends in care access, outcomes, and costs.
-
-**Key variables in this dataset**:  
-- `Hospitalization Year` *(Integer)*: The year of admission.  
-- `Hospital ID` *(String)*: Unique identifier for hospitals.  
-- `Diagnosis Codes` *(String)*: ICD-10 codes representing primary and secondary diagnoses.  
-- `Procedure Codes` *(String)*: ICD-10 codes for procedures performed.  
-- `Discharge Status` *(String)*: Patient discharge outcome (e.g., routine, transferred, deceased).  
-- `Length of Stay` *(Integer)*: Duration of hospitalization in days.  
-- `Total Charges` *(Float)*: Total cost of hospitalization.  
+- `Notes`: String – Additional notes or clarifications about the data record.
+- `Year`: Integer – The year of death for the specific record.
+- `Year Code`: String – A coded value that represents the year in a specific format (e.g., two-digit year).
+- `Multiple Cause of Death`: String – The specific cause of death, which can be one or more, as per ICD codes.
+- `Multiple Cause of Death Code`: String – The ICD code representing the cause(s) of death.
+- `Deaths`: Integer – The number of deaths attributed to the specified cause(s).
+- `Population`: Integer – The total population of the specified geographic area during the year.
+- `Crude Rate`: Float – The crude mortality rate, typically calculated as the number of deaths per 100,000 population.
 
 #### California Health and Human Services (CalHHS)  
 
 The [California Health and Human Services Open Data Portal](https://data.chhs.ca.gov/) offers access to aggregated, non-confidential health data. For this analysis, hospital discharge data, which includes aggregated insights from the HCUP dataset, was utilized.
 
+
 **Key variables in this dataset**:  
-- `Year` *(Integer)*: The year of discharge.  
-- `County` *(String)*: The county where the hospital discharge occurred.  
-- `Diagnosis Codes (ICD-10)` *(String)*: Codes for primary and secondary diagnoses.  
-- `Procedure Codes (ICD-10)` *(String)*: Codes for medical procedures performed.  
-- `Discharge Status` *(String)*: Patient outcome post-discharge.  
-- `Hospital Type` *(String)*: Classification of the facility (e.g., general, specialty).  
-- `Race and Ethnicity` *(String)*: Demographics of the patients.  
+- `_id`: Integer – Unique identifier for each record.
+- `patcnty1`: String/Integer – Code for the county where the discharge occurred.
+- `dsch_yr`: Integer – Year of the discharge.
+- `mdc`: String/Integer – Major Diagnostic Category (MDC) code.
+- `mdc_desc`: String – Description of the Major Diagnostic Category.
+- `Discharges`: Integer – Number of hospital discharges for the specific condition.
+- `AnnotationCode`: String – Code providing additional contextual information on the discharge record.
+- `AnnotationDesc`: String – Description of the annotation code.
   
-*Note: Per my initial extension plan, and I intended to use data from CDC and AHRQ for my analysis. I recently found the third source CalHHS, which directly provides aggregated data that includes the information from the AHRQ dataset. Hence, I will use the CalHHS data in place of AHRQ data for this analysis. I included the details about AHRQ nonethless, since it might be useful for someone who would want to extend my analysis to include length of stay*
+*Note: Per my initial extension plan, and I intended to use data from CDC and AHRQ for my analysis. I recently found the third source CalHHS, which directly provides aggregated data that includes the information from the AHRQ dataset. Hence, I will use the CalHHS data in place of AHRQ data for this analysis.*
 
 ## Documentation
 
@@ -215,7 +209,7 @@ As part of my analysis to understand how the number of deaths and hospital disch
 - **[smokeestimate_death_discharge.png](generated_plots/smokeestimate_death_discharge.png)**: This plot shows the relationship between smoke estimates and respiratory-related deaths and discharges over the years.
 - **[forecasted_deaths_Respiratory Diseases.png](<generated_plots/forecasted_deaths_Respiratory Diseases.png>)**: This plot presents the forecasted number of deaths due to respiratory diseases from 2020 to 2050 based on predicted smoke estimates.
 - **[forecasted_deaths_Asthma.png](generated_plots/forecasted_deaths_Asthma.png)**: This plot illustrates the forecasted number of deaths due to asthma from 2020 to 2050, based on the predicted smoke estimates.
-- **Smoke Estimate_<disease>**: These plots illustrate the trends between smoke estimates and specific diseases over the years. 
+- **Smoke Estimate_[disease_name].png**: These plots illustrate the trends between smoke estimates and specific diseases over the years. 
 
 ### Considerations and Limitations
 
