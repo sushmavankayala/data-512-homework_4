@@ -30,68 +30,66 @@ A copy of the examples referred is also available in this repository under the f
 
 ### Part 1 - Common Analysis
 
-#### WildLand Fire Data
+#### Wildland Fire Data  
 
-The wildfire data for this project was sourced from the [Combined Wildland Fire Datasets for the United States and Certain Territories, 1800s-Present](https://www.sciencebase.gov/catalog/item/61aa537dd34eb622f699df81). his dataset includes a "combined" dataset that is free of duplicates, containing information of different types of wildland fires. For our analysis, we use the JSON file named `USGS_Wildland_Fire_Combined_Dataset.json`. This file is not committed to the repository since its size exceeds the allowed limits of git.
+The wildfire data for this project was sourced from the [Combined Wildland Fire Datasets for the United States and Certain Territories, 1800s-Present](https://www.sciencebase.gov/catalog/item/61aa537dd34eb622f699df81). This dataset includes a "combined" dataset free of duplicates and containing information about various wildland fires. For our analysis, we used the JSON file named `USGS_Wildland_Fire_Combined_Dataset.json`. Due to its size exceeding the limits of Git, the file is not committed to the repository.
 
-Key variables in this dataset:
-- **Fire Name:** The name or identifier of the wildfire.
-- **Fire Start Date:** The date the fire started.
-- **Fire End Date:** The date the fire was contained or extinguished.
-- **Fire Type:** The type of wildfire (e.g., vegetation, forest).
-- **Burned Area:** The area affected by the fire (usually in acres).
-- **Location:** Geographic coordinates (latitude and longitude) of the wildfire.
+**Key variables in this dataset**:  
+- **Fire Name** *(String)*: Identifier or name of the wildfire.  
+- **Fire Start Date** *(Date)*: The starting date of the fire.  
+- **Fire End Date** *(Date)*: The date when the fire was extinguished or contained.  
+- **Fire Type** *(String)*: The category of fire, such as vegetation or forest fire.  
+- **Burned Area** *(Float)*: The total area affected by the fire, typically measured in acres.  
+- **Location** *(Float, Float)*: Latitude and longitude coordinates indicating the geographic location of the wildfire.  
 
-#### Air Quality Index Data
+#### Air Quality Index Data  
 
-The air quality index (AQI) data for this project was retrieved from the US Environmental Protection Agency (EPA) Air Quality Service (AQS) API. The [documentation](https://aqs.epa.gov/aqsweb/documents/data_api.html) provides detailed information about the available parameters and sample requests.
+The air quality index (AQI) data for this project was retrieved from the [EPA Air Quality Service (AQS) API](https://aqs.epa.gov/aqsweb/documents/data_api.html). This dataset contains daily AQI measurements from monitoring stations. To fetch AQI data near Stockton, CA, we used the Federal Information Processing Standards (FIPS) codes for city, county, and state, obtained from the [Census Bureau](https://www.census.gov/library/reference/code-lists/ansi.html).
 
-To fetch AQI data from monitoring stations near Stockton, CA, we used the FIPS codes for the target city, county, and state, which we obtained from the [Census Bureau](https://www.census.gov/library/reference/code-lists/ansi.html).
-
-Key variables in the AQI dataset:
-- **Date:** The date of the air quality measurement.
-- **Station ID:** The unique identifier for the monitoring station.
-- **AQI Value:** The air quality index value for the measurement.
-- **Pollutant:** The type of pollutant measured (e.g., PM2.5, Ozone).
-- **Latitude/Longitude:** The geographic coordinates of the monitoring station.
-- **State/County/City FIPS Codes:** Codes representing the state, county, and city where the data was collected.
+**Key variables in this dataset**:  
+- **Date** *(Date)*: The date of air quality measurement.  
+- **Station ID** *(String)*: A unique identifier for each monitoring station.  
+- **AQI Value** *(Integer)*: The calculated AQI score for the given date and location.  
+- **Pollutant** *(String)*: The specific pollutant measured, such as PM2.5 or Ozone.  
+- **Latitude/Longitude** *(Float, Float)*: Coordinates of the monitoring station.  
+- **State/County/City FIPS Codes** *(String)*: Numeric codes representing the geographic location of the measurements.  
 
 ### Part 2 - Extension
 
-####  Multiple Causes of Death - CDC
+#### Multiple Causes of Death - CDC  
 
-The Multiple Cause of Death database provides mortality and population statistics for all U.S. counties based on death certificates of U.S. residents. Each certificate includes a primary cause of death, up to twenty additional contributing causes, and demographic information. This dataset helps to analyze various causes of death, providing insights into public health trends across different regions and years. The data is accessible through the [CDC Multiple Cause of Death database](https://www.cdc.gov/nchs/data_access/cmsd.htm).
+The [Multiple Cause of Death database](https://www.cdc.gov/nchs/data_access/cmsd.htm) provides mortality and population statistics for all U.S. counties based on death certificates. Each certificate includes the primary cause of death, up to twenty contributing causes, and demographic details.
 
-Key variables in this dataset that were used for my analysis:
-- **Year:** The year of death.
-- **County:** The county in which the death occurred.
-- **Cause of Death:** The primary cause and contributing causes, including ICD-10 codes.
+**Key variables in this dataset**:  
+- **Year** *(Integer)*: The year of death.  
+- **County** *(String)*: The county where the death occurred.  
+- **Cause of Death** *(String)*: The primary and contributing causes of death, categorized by ICD-10 codes.  
 
-#### Healthcare Cost and Utilization Project - AHRQ
+#### Healthcare Cost and Utilization Project - AHRQ  
 
-The Agency for Healthcare Research and Quality (AHRQ) manages the Healthcare Cost and Utilization Project (HCUP), which provides comprehensive hospital data across the U.S. This includes insights into hospitalizations, healthcare utilization, and associated costs. The data can be used to analyze trends in healthcare access, the cost of care, and hospital performance. HCUP data is available at [HCUPnet](https://hcupnet.ahrq.gov/).
+The [Healthcare Cost and Utilization Project (HCUP)](https://hcupnet.ahrq.gov/) is a resource by the Agency for Healthcare Research and Quality (AHRQ) that provides insights into U.S. hospitalizations, healthcare utilization, and costs. This dataset helps analyze trends in care access, outcomes, and costs.
 
-Key variables in this dataset:
-- **Hospitalization Year:** The year of the hospitalization.
-- **Hospital ID:** A unique identifier for each hospital.
-- **Diagnosis Codes:** ICD-10 codes for the conditions treated during hospitalization.
-- **Procedure Codes:** ICD-10 procedure codes for treatments performed.
-- **Discharge Status:** Outcome of the hospitalization (e.g., discharged, died).
-- **Length of Stay:** The duration of the hospitalization in days.
-- **Total Charges:** The total charges incurred for the hospitalization.
+**Key variables in this dataset**:  
+- **Hospitalization Year** *(Integer)*: The year of admission.  
+- **Hospital ID** *(String)*: Unique identifier for hospitals.  
+- **Diagnosis Codes** *(String)*: ICD-10 codes representing primary and secondary diagnoses.  
+- **Procedure Codes** *(String)*: ICD-10 codes for procedures performed.  
+- **Discharge Status** *(String)*: Patient discharge outcome (e.g., routine, transferred, deceased).  
+- **Length of Stay** *(Integer)*: Duration of hospitalization in days.  
+- **Total Charges** *(Float)*: Total cost of hospitalization.  
 
-#### California Health and Human Services (CalHHS)
+#### California Health and Human Services (CalHHS)  
 
-The California Health and Human Services Agency (CalHHS) offers an Open Data Portal providing access to non-confidential health and human services data. This portal includes standardized datasets on a range of topics, including hospital discharges. The portal is designed to enhance public access to critical healthcare information in California. For this analysis, we will use the aggregated hospital discharge data from CalHHS, which directly includes information found in the AHRQ dataset. The CalHHS Open Data Portal can be accessed [here](https://data.chhs.ca.gov/).
+The [California Health and Human Services Open Data Portal](https://data.chhs.ca.gov/) offers access to aggregated, non-confidential health data. For this analysis, hospital discharge data, which includes aggregated insights from the HCUP dataset, was utilized.
 
-Key variables in this dataset:
-- **Year:** The year of hospital discharge.
-- **County:** The county of the hospital discharge.
-- **Diagnosis Codes (ICD-10):** The ICD-10 codes representing the primary and secondary diagnoses of discharged patients.
-- **Procedure Codes (ICD-10):** The codes representing procedures conducted during the hospitalization.
-- **Discharge Status:** The patient's discharge status (e.g., routine discharge, transferred).
-- **Hospital Type:** The type of facility (e.g., general, specialty).
-- **Race and Ethnicity:** Racial and ethnic background of the patients.
+**Key variables in this dataset**:  
+- **Year** *(Integer)*: The year of discharge.  
+- **County** *(String)*: The county where the hospital discharge occurred.  
+- **Diagnosis Codes (ICD-10)** *(String)*: Codes for primary and secondary diagnoses.  
+- **Procedure Codes (ICD-10)** *(String)*: Codes for medical procedures performed.  
+- **Discharge Status** *(String)*: Patient outcome post-discharge.  
+- **Hospital Type** *(String)*: Classification of the facility (e.g., general, specialty).  
+- **Race and Ethnicity** *(String)*: Demographics of the patients.  
   
 *Note: Per my initial extension plan, and I intended to use data from CDC and AHRQ for my analysis. I recently found the third source CalHHS, which directly provides aggregated data that includes the information from the AHRQ dataset. Hence, I will use the CalHHS data in place of AHRQ data for this analysis. I included the details about AHRQ nonethless, since it might be useful for someone who would want to extend my analysis to include length of stay*
 
@@ -184,3 +182,9 @@ As part of my analysis to understand how the number of deaths and hospital disch
    - Aggregating data by year may obscure short-term trends or outliers, such as days with extreme smoke levels or seasonal variations in respiratory diseases. Granular analysis, such as monthly or seasonal data, could provide additional insights.  
 10. **Data Source Reliability**  
     - The health and AQI data come from reputable sources (CDC, CalHHS, EPA), but any inaccuracies or biases in their collection and reporting processes will impact the analysis.  
+
+### Conclusion  
+
+This analysis aimed to uncover the health impacts of wildfire smoke exposure in Stockton, California, by integrating and analyzing diverse datasets, including wildfire smoke estimates, air quality metrics, mortality records, and hospitalization data. Key findings indicate significant correlations between smoke estimates and respiratory health outcomes, particularly deaths related to asthma. Using predictive models, we forecasted future respiratory mortality trends based on projected smoke estimates, providing a glimpse into the potential long-term effects of wildfire smoke exposure. These insights serve as a foundation for addressing public health challenges, emphasizing the need for proactive measures to mitigate smoke-related health risks in Stockton's population.  
+
+While the findings shed light on the link between wildfire smoke and health outcomes, they also highlight the complexity of establishing causal relationships and the need for deeper investigation. Future research could focus on expanding datasets, employing advanced models for smoke dispersion and health forecasting, and collaborating with domain experts to refine methodologies. By building on this study, public health officials and policymakers can develop targeted interventions to reduce the adverse health effects of wildfire smoke and improve community resilience.
